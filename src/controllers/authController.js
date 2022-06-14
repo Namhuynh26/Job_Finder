@@ -9,7 +9,7 @@ let getLogin= (req, res) => {
     });
 };
 
-let postRegister = await (req, res) => {
+let postRegister = async (req, res) => {
     let errorArr = [];
     
     let validationErrors = validationResult(req);

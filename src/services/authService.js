@@ -16,6 +16,8 @@ let register = (email, password, username, phone) => {
         let salt = bcrypt.genSaltSync(saltRounds);
 
         let applicantItem = {
+            username: username,
+            phone: phone,
             local: {
                 email: email,
                 password: bcrypt.hashSync(password, salt),

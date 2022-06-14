@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bluebird = require("bluebird");
 
 //Connect to MongoDB
-let connectDB = () => {
+let connectDB = (err) => {
     mongoose.Promise = bluebird;
 
     let DB_CONNECTION = "mongodb";
@@ -14,7 +14,11 @@ let connectDB = () => {
     //mongodb://localhost:27017/JobFinder
     let URI = `${DB_CONNECTION}://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
-    return mongoose.connect(URI, {useNewUrlParser: true});
+    if(err){
+        throw err;
+    } else {
+        return mongoose.connect(URI, {useNewUrlParser: true});
+    }
 }
 
 module.exports = connectDB;
