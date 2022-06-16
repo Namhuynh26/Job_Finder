@@ -1,33 +1,38 @@
-const {validationResult} = require("express-validator");
-const {auth} = require("../services/index");
+const ApplicantModel = require("../models/applicantModel");
+const { validationResult } = require("express-validator");
 
 
-let getLogin= (req, res) => {
-    return res.render("auth/login", {
-        errors: req.flash("errors"),
-        success: req.flash("success")
-    });
-};
+register_get = (req, res) => {
+    res.render("register");
+}
 
-let postRegister = async (req, res) => {
-    let errorArr = [];
-    
-    let validationErrors = validationResult(req);
-    if(!validationErrors.isEmpty()) {
-        let errors = Object.values(validationErrors.mapped());
-        errors.forEach(item => {
-            errorArr.push(item.msg);
-        });
+register_post = async (req, res) => {
+    const {email, password, username, phone} = req.body; 
 
-        req.flash("errors", errorArr);
-        return res.redirect("/register");
+    try {
+        const applicant = await ApplicantModel.create({email, password, username, phone});
+        res.status(201).json(applicant);    
     }
+    catch(err) {
+        
+        res.status(400).send("Error, cannot create account");
+    }
+}
 
-    await auth.register(req.body.email, req.body.password, req.body.username, req.body.phone);
-};
+login_get = (req, res) => {
+    res.render("login");
+}
+
+login_post = (req, res) => {
+    const {email, password} = req.body; 
+    console.log(email, password);
+    res.send("user login");
+}
 
 
 module.exports = {
-    getLogin : getLogin,
-    postRegister : postRegister
+    register_get,
+    register_post,
+    login_get,
+    login_post
 };

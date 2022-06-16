@@ -1,29 +1,24 @@
 const mongoose = require("mongoose");
 
 const applicantSchema = new mongoose.Schema({
-    id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
+    email: {
+        type: String,
+        require: true,
+        unique: true,
+        lowcase: true,
+    },
+    password: {
+        type: String,
+        require: true,
+        minlength: 8
+    },
+    isActive: {
+        type: Boolean,
+        default: false
     },
     username: {
         type: String,
-    },
-    gender: {
-        type: String,
-        default: "male"
-    },
-    local: {
-        email: {
-            type: String,
-            unique: true,
-            trim: true
-        },
-        password: String,
-        isActive: {
-            type: Boolean,
-            default: false
-        },
-        verifyToken: String
+        minlength: 6
     },
     role: {
         type: String,
@@ -31,15 +26,14 @@ const applicantSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        validate: {
+        /**
+         * validate: {
             validator: function(v) {
                 return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
             },
             msg: "Phone number is invalid!"
         },
-    },
-    address: {
-        type: String
+         */
     },
     createAt: {
         type: Number,

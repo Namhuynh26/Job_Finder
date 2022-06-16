@@ -27,6 +27,8 @@ let initRoutes = function(app) {
     router.get("/login", function(req, res){
         res.render("auth/login");
     });
+
+    router.post("/login", auth.login_post);
     
     router.get("/login_recruiter", function(req, res){
         res.render("auth/login_recruiter");
@@ -48,7 +50,7 @@ let initRoutes = function(app) {
         res.render("pages/recruiter_listing");
     });
 
-    router.post("/register", authValid.register, auth.postRegister);
+    router.post("/register", auth.register_post);
 
     return app.use("/", router);
 }

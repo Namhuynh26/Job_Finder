@@ -14,10 +14,11 @@ let connectDB = (err) => {
     //mongodb://localhost:27017/JobFinder
     let URI = `${DB_CONNECTION}://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
-    if(err){
-        throw err;
-    } else {
+    try {
         return mongoose.connect(URI, {useNewUrlParser: true});
+    } catch(err) {
+        console.log("Connecting fail by err", err);
+        process.exit(1);
     }
 }
 
