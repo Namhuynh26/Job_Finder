@@ -50,14 +50,4 @@ const applicantSchema = new mongoose.Schema({
 
 });
 
-applicantSchema.statics = {
-    createNew(item){
-        return this.create(item);
-    },
-
-    findByEmail(email) {
-        return this.findOne({"local.email": email}).exec();
-    }
-};
-
 module.exports = mongoose.model("Applicant", applicantSchema);

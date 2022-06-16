@@ -1,9 +1,10 @@
 const  transValidation = {
+    email_empty: "Email không được bỏ trống",
     email_incorrect: "Email không đúng định dạng!",
     password_incorrect: "Mật khẩu phải chứa ít nhất 8 ký tự.",
     password_confirmation_incorrect: "Nhập lại mật khẩu chưa chính xác.",
-    username: "Tên người dùng phải chứa ít nhất 6 ký tự",
-    phone: "Số điện thoại giới hạn trong 10-11 ký tự.",
+    username_incorrect: "Tên người dùng phải chứa ít nhất 6 ký tự",
+    phone_incorrect: "Số điện thoại giới hạn trong 10-11 ký tự.",
     keyword_find_user: "Lỗi từ khóa tìm kiếm, chỉ cho phép ký tự chữ cái và số, cho phép khoảng trống.",
 };
 
