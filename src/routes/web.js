@@ -1,6 +1,6 @@
 const express = require("express");
 const {home, auth} = require("../controllers/index");
-const {authValid} = require("../validation/index");
+
 
 let router = express.Router();
 
@@ -28,7 +28,7 @@ let initRoutes = function(app) {
         res.render("auth/login");
     });
 
-    router.post("/login", auth.login_post);
+    router.post("/login", auth.login);
     
     router.get("/login_recruiter", function(req, res){
         res.render("auth/login_recruiter");
@@ -50,7 +50,8 @@ let initRoutes = function(app) {
         res.render("pages/recruiter_listing");
     });
 
-    router.post("/register", auth.register_post);
+    router.post("/register", auth.register);
+
 
     return app.use("/", router);
 }

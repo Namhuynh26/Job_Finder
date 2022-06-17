@@ -1,59 +1,62 @@
 const ApplicantModel = require("../models/applicantModel");
-const {authValid} = require("../validation/index");
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //Handle error
 const handleError = (err) => {
     console.log(err.message, err.code);
-    let error = authValid.register;
 
-    //duplicate error
+
+    //Duplicate error
     if(err.code === 11000) {
         error.email = "This email is already registed";
         return error;
     }
 
-    //validation errors
-    if(err.message.include("Applicant validation failed")){
-        Object.values(err.error).forEach(({properties}) => {
-            error[properties.path] = properties.message;
-        });
-    }
 }
 
-register_get = (req, res) => {
-    res.render("register");
+let maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({id}, "JobFinder secret", {
+        expiresIn: maxAge
+    });
 }
 
-register_post = async (req, res) => {
+
+const register = async (req, res) => {
     const {email, password, username, phone} = req.body; 
-
 
     try {
         const applicant = await ApplicantModel.create({email, password, username, phone});
-        res.status(201).json(applicant);    
+        const token = createToken(applicant._id);
+        res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        res.status(201).json({applicant: applicant._id});    
     }
     catch(err) {
-        handleError(err);
-        res.status(400).send("Error, cannot create account");
-
+        let errors = handleError(err);
+        res.status(400).json({errors});
     }
 };
 
-login_get = (req, res) => {
-    res.render("login");
-}
 
-login_post = (req, res) => {
-    const {email, password} = req.body; 
-    console.log(email, password);
-    res.send("user login");
+const login = async (req, res) => {
+    let {email, password} = req.body;
+    
+    try {
+        const applicant = await ApplicantModel.login(email, password);
+        const token = createToken(applicant._id);
+        res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        res.status(200).json({applicant: applicant._id});  
+        
+    }
+    catch (err){
+        let errors = handleError(err);
+        res.status(400).json({});
+    }
 }
 
 
 module.exports = {
-    register_get,
-    register_post,
-    login_get,
-    login_post
+    register,
+    login
 };
