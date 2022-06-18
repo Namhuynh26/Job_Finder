@@ -30,7 +30,7 @@ const jobSchema = new mongoose.Schema({
     salary: {
         type: Number
     },
-    applicantmax: {
+    amountOfApplicant: {
         type: Number
     },
     address: {

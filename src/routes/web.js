@@ -39,7 +39,7 @@ let initRoutes = function(app) {
     });
     
     router.get("/register_recruiter", function(req, res){
-        res.render("register_recruiter");
+        res.render("auth/register_recruiter");
     });
     
     router.get("/privacy", function(req, res){
@@ -51,6 +51,10 @@ let initRoutes = function(app) {
     });
 
     router.post("/register", auth.register);
+
+    router.get("/admin", function(req, res) {
+        res.render("pages/admin");
+    });
 
 
     return app.use("/", router);

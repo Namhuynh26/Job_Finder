@@ -1,6 +1,6 @@
 const ApplicantModel = require("../models/applicantModel");
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
 
 //Handle error
 const handleError = (err) => {
@@ -46,8 +46,9 @@ const login = async (req, res) => {
         const applicant = await ApplicantModel.login(email, password);
         const token = createToken(applicant._id);
         res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        axios.setHeader("Content-type", "/partials/applicantHeader");
+        res.redirect("/home");
         res.status(200).json({applicant: applicant._id});  
-        
     }
     catch (err){
         let errors = handleError(err);
