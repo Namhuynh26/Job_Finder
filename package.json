@@ -31,10 +31,9 @@
   "keywords": [
     "nodejs",
     "mongodb",
-    "rest",
-    "api",
     "express",
-    "jwt"
+    "jwt",
+    "MVC"
   ],
   "description": ""
 }
