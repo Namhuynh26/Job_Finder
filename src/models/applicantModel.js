@@ -13,10 +13,6 @@ const applicantSchema = new mongoose.Schema({
         require: true,
         minlength: 8
     },
-    isActive: {
-        type: Boolean,
-        default: false
-    },
     username: {
         type: String,
         minlength: 6
@@ -27,14 +23,8 @@ const applicantSchema = new mongoose.Schema({
     },  
     phone: {
         type: String,
-        /**
-         * validate: {
-            validator: function(v) {
-                return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
-            },
-            msg: "Phone number is invalid!"
-        },
-         */
+        require: true,
+        unique: true
     },
     createAt: {
         type: Date,

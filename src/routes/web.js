@@ -1,10 +1,13 @@
 const express = require("express");
 const {home, auth} = require("../controllers/index");
+const {requireAuth, checkApplicant} = require("../middlewares/authMiddleware");
 
 
 let router = express.Router();
 
 let initRoutes = function(app) {
+
+    router.get("*", checkApplicant);
 
     router.get("/home", home.getHome);
     

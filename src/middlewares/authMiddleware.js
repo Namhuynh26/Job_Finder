@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Applicant = require("../models/applicantModel");
 
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
@@ -22,6 +23,31 @@ const requireAuth = (req, res, next) => {
     
 }
 
+//Check current applicant
+const checkApplicant = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token, "JobFinder secret", async (err, decodedToken) => {
+            if(err){
+                console.log(err.message);
+                res.locals.applicant = null;
+                next();
+            }
+            else {
+                console.log(decodedToken);
+                let applicant = await Applicant.findById(decodedToken.id);
+                res.locals.applicant = applicant;
+                next();
+            }
+        });
+    }
+    else {
+        res.locals.applicant = null;
+        next();
+    }
+}
+
 module.exports = {
-    requireAuth
+    requireAuth,
+    checkApplicant
 };

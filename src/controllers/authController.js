@@ -1,6 +1,5 @@
 const ApplicantModel = require("../models/applicantModel");
 const jwt = require("jsonwebtoken");
-const axios = require("axios");
 
 //Handle error
 const handleError = (err) => {
@@ -30,6 +29,7 @@ const register = async (req, res) => {
         const applicant = await ApplicantModel.create({email, password, username, phone});
         const token = createToken(applicant._id);
         res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        res.redirect("/home");
         res.status(201).json({applicant: applicant._id});    
     }
     catch(err) {
@@ -46,13 +46,12 @@ const login = async (req, res) => {
         const applicant = await ApplicantModel.login(email, password);
         const token = createToken(applicant._id);
         res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
-        axios.setHeader("Content-type", "/partials/applicantHeader");
         res.redirect("/home");
         res.status(200).json({applicant: applicant._id});  
     }
     catch (err){
         let errors = handleError(err);
-        res.status(400).json({});
+        res.status(400).json({errors});
     }
 }
 

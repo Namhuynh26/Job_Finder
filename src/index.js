@@ -23,7 +23,7 @@ configSession(app);
 configViewEngine(app);
 
 //Enable post data for request
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 //Init routes
 initRoutes(app);
