@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/connectDB");
 const configViewEngine = require("./config/viewEngine");
 const initRoutes = require("./routes/web");
-const bodyParser = require("body-parser");
 const configSession = require("./config/session");
 const cookiesParser = require("cookie-parser");
 
