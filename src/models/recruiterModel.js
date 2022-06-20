@@ -25,7 +25,9 @@ const recruiterSchema = new mongoose.Schema({
         default: "recruiter"
     }, 
     phone: {
-        type: String
+        type: String,
+        require: true,
+        unique: true
     },
     nameOfCompany: {
         type: String

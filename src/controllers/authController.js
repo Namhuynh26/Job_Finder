@@ -23,7 +23,6 @@ const handleError = (err) => {
 
 }
 
-let maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
     return jwt.sign({id}, "JobFinder secret", {
         expiresIn: maxAge
@@ -37,7 +36,7 @@ const postRegister = async (req, res) => {
     try {
         const applicant = await ApplicantModel.create({email, password, username, phone});
         const token = createToken(applicant._id);
-        res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        res.cookie("jwt", token, {httpOnly: true, maxAge});
         res.redirect("/home");
         res.status(201).json({applicant: applicant._id});    
     }
@@ -54,7 +53,7 @@ const postLogin = async (req, res) => {
     try {
         const applicant = await ApplicantModel.loginModel(email, password);
         const token = createToken(applicant._id);
-        res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000});
+        res.cookie("jwt", token, {httpOnly: true});
         res.redirect("/home");
         res.status(200).json({applicant: applicant._id});  
     }
