@@ -48,7 +48,9 @@
                                 <h3 class="display-5" style="padding: 20px 0 50px 0; text-align: center;">ĐĂNG NHẬP ỨNG VIÊN</h3>
                                 <form method="post" action="/login" data-remote="true">
                                     <div class="form-group mb-3"> <input id="inputEmail" type="email" placeholder="Email" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4"> </div>
+                                    <div class="email error"></div>
                                     <div class="form-group mb-3"> <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-danger"><br> </div>
+                                    <div class="password error"></div>
                                     <div class="custom-control custom-checkbox mb-3"> <input id="customCheck1" type="checkbox" checked class="custom-control-input"> <label for="customCheck1" class="custom-control-label">Quên mật khẩu</label> </div> <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="margin-left: 50px;">DĂNG NHẬP</button>
                                     <div class="text-center d-flex justify-content-between mt-4">
                                         <p> Hoặc &nbsp<a href="/register" class="font-italic text-muted"> <u>Tạo tài khoản</u></a></p>
@@ -98,5 +100,44 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
+
+        <!--Login exe-->
+        <script>
+            const form =  document.querySelector("form");
+            const emailError = document.querySelector(".email.error");
+            const passwordError = document.querySelector(".password.error");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                //reset errors
+                emailError.textContent = "";
+                passwordError.textContent = "";
+
+                //Get the values
+                const email = form.email.value;
+                const password = form.password.value;
+
+                try {
+                    const res = await fetch("/login", {
+                        method: "POST",
+                        body: JSON.stringify({email, password}),
+                        headers: {"Content-Type": "application/json"}
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    if(data.errors) {
+                        emailError.textContent = data.errors.email;
+                        password.textContent = data.errors.password;
+                    }
+                    if(data.applicant) {
+                        location.assign("/");
+                    }
+                }
+                catch(err) {
+                    console.log(err);
+                }
+            });
+        </script>
    </body>
 </html>

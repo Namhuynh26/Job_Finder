@@ -76,7 +76,7 @@
                                     <a href="/signup" class="btn head-btn1">Đăng ký</a>                  
                                 </div>  
                                 -->  
-                                <% if(applicant) {%>
+                                <% if(login) {%>
                                     <div class="dropdown">
                                         <a type="button" data-toggle="dropdown"><i class="fas fa-user-circle" style="font-size: 30px;"></i></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
@@ -85,7 +85,7 @@
                                             <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                                         </ul>
                                     </div>
-                                <%} else {%> 
+                                <% } else {%> 
                                     <div class="dropdown">
                                         <a  class="btn head-btn2" href="#" role="button" data-toggle="dropdown">Đăng nhập</a>
                                         <div class="dropdown-menu">

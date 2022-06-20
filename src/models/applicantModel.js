@@ -55,16 +55,16 @@ applicantSchema.pre("save", async function(next) {
 });
 
 //Statics method to login
-applicantSchema.statics.login = async function(email, password) {
+applicantSchema.statics.loginModel = async function(email, password) {
     const applicant = await this.findOne({email});
     if(applicant){
        const auth = await bcrypt.compare(password, applicant.password);
        if(auth) {
         return applicant;
        }
-       throw Error("Incorrect email or password");
+       throw Error("Incorrect password");
     }
-    throw Error("Incorrect email or password");
+    throw Error("Incorrect email");
 }
 
 module.exports = mongoose.model("Applicant", applicantSchema);
