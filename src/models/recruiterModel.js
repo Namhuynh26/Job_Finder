@@ -33,4 +33,6 @@ const recruiterSchema = new mongoose.Schema({
     address: {
         type: String
     }
-})
+});
+
+module.exports = mongoose.model("Recruiter", recruiterSchema);

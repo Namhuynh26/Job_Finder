@@ -40,6 +40,8 @@ let initRoutes = function(app) {
     router.get("/register", function(req, res){
         res.render("auth/register");
     });
+
+    router.post("/register", auth.register);
     
     router.get("/register_recruiter", function(req, res){
         res.render("auth/register_recruiter");
@@ -53,7 +55,6 @@ let initRoutes = function(app) {
         res.render("pages/recruiter_listing");
     });
 
-    router.post("/register", auth.register);
 
     router.get("/admin", function(req, res) {
         res.render("pages/admin");
