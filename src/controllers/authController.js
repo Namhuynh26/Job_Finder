@@ -31,7 +31,7 @@ const createToken = (id) => {
 }
 
 
-const register = async (req, res) => {
+const postRegister = async (req, res) => {
     const {email, password, username, phone} = req.body; 
 
     try {
@@ -48,7 +48,7 @@ const register = async (req, res) => {
 };
 
 
-const login = async (req, res) => {
+const postLogin = async (req, res) => {
     let {email, password} = req.body;
     
     try {
@@ -64,8 +64,14 @@ const login = async (req, res) => {
     }
 }
 
+const getLogout = (req, res) => {
+    res.cookie("jwt", "", {maxAge: 1});
+    res.redirect("/home");
+}
+
 
 module.exports = {
-    register,
-    login
+    postRegister,
+    postLogin,
+    getLogout
 };

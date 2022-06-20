@@ -31,7 +31,7 @@ let initRoutes = function(app) {
         res.render("auth/login");
     });
 
-    router.post("/login", auth.login);
+    router.post("/login", auth.postLogin);
     
     router.get("/login_recruiter", function(req, res){
         res.render("auth/login_recruiter");
@@ -41,7 +41,7 @@ let initRoutes = function(app) {
         res.render("auth/register");
     });
 
-    router.post("/register", auth.register);
+    router.post("/register", auth.postRegister);
     
     router.get("/register_recruiter", function(req, res){
         res.render("auth/register_recruiter");
@@ -55,10 +55,11 @@ let initRoutes = function(app) {
         res.render("pages/recruiter_listing");
     });
 
-
     router.get("/admin", function(req, res) {
         res.render("pages/admin");
     });
+
+    router.get("/logout", auth.getLogout);
 
 
     return app.use("/", router);

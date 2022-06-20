@@ -17,6 +17,9 @@ const applicantSchema = new mongoose.Schema({
         type: String,
         minlength: 6
     },
+    token: {
+        type: String
+    },
     role: {
         type: String,
         default: "applicant"

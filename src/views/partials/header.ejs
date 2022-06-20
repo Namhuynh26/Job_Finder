@@ -76,13 +76,13 @@
                                     <a href="/signup" class="btn head-btn1">Đăng ký</a>                  
                                 </div>  
                                 -->  
-                                <% if(login) {%>
+                                <% if(applicant) {%>
                                     <div class="dropdown">
                                         <a type="button" data-toggle="dropdown"><i class="fas fa-user-circle" style="font-size: 30px;"></i></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a class="dropdown-item" href="#">Cập nhật thông tin</a></li>
                                             <li><a class="dropdown-item" href="#">Đăng CV</a></li>
-                                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                                            <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
                                         </ul>
                                     </div>
                                 <% } else {%> 
