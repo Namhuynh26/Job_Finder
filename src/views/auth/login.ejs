@@ -128,7 +128,7 @@
                     console.log(data);
                     if(data.errors) {
                         emailError.textContent = data.errors.email;
-                        password.textContent = data.errors.password;
+                        passwordError.textContent = data.errors.password;
                     }
                     if(data.applicant) {
                         location.assign("/");

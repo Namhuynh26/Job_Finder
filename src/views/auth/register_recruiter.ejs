@@ -10,41 +10,41 @@
                         <div class="card-body p-5">
                           <h2 class="text-uppercase text-center mb-5">ĐĂNG KÝ ỨNG VIÊN</h2>
             
-                          <form>           
+                          <form method="post" action="/register_recruiter" data-remote="true">           
                             <div class="form-left">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example3cg">Email*</label>
-                                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Nhập địa chỉ email của bạn"/>  
+                                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Nhập địa chỉ email của bạn" name="email"/>  
                                   </div>
                   
                                   <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example4cg">Mật khẩu*</label>
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Nhập mật khẩu của bạn"/>
+                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Nhập mật khẩu của bạn" name="password"/>
                                   </div>
                   
                                   <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example4cdg">Xác nhận lại mật khẩu*</label>
-                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Nhập lại mật khẩu của bạn"/>  
+                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Nhập lại mật khẩu của bạn" name="password-confirmation"/>  
                                   </div>
       
                                   <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example1cg">Họ và tên*</label>
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập họ và tên của bạn"/>
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập họ và tên của bạn" name="name"/>
                                   </div>
                   
                                   <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example1cg">Số điện thoại cá nhân*</label>
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập số điện thoại cá nhân của bạn"/>
+                                    <label class="form-label" for="form3Example1cg">Số điện thoại*</label>
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập số điện thoại công ty" name="phone"/>
                                   </div>
 
                                   <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example1cg">Tên công ty*</label>
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập tên công ty của bạn"/>
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập tên công ty của bạn" name="nameOfCompany"/>
                                   </div>
       
                                   <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example1cg">Địa chỉ*</label>
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập địa chỉ hiện tại của bạn"/>
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập địa chỉ hiện tại của bạn" name="address"/>
                                   </div>
                             </div>
 
@@ -65,7 +65,7 @@
                             -->
             
                             <div class="d-flex justify-content-center">
-                              <button type="button" class="btn btn-success btn-block btn-lg ">Đăng ký</button> <!--gradient-custom-4 text-body-->
+                              <button type="submit" class="btn btn-success btn-block btn-lg ">Đăng ký</button> <!--gradient-custom-4 text-body-->
                             </div>
             
                             <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản? <a href="/login" class="fw-bold text-body"><u>Đăng nhập ngay</u></a></p>

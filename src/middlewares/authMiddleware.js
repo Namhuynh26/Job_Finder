@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Recruiter = require("../models/recruiterModel");
 const Applicant = require("../models/applicantModel");
 
 const requireAuth = (req, res, next) => {
@@ -9,7 +10,11 @@ const requireAuth = (req, res, next) => {
         jwt.verify(token, "JobFinder secret", (err, decodedToken) => {
             if(err){
                 console.log(err.message);
-                res.redirect("/login");
+                if(applicant) {
+                    res.redirect("/login");
+                }else if(recruiter){
+                    res.redirect("/login_recruiter")
+                }
             }
             else {
                 console.log(decodedToken);
@@ -18,7 +23,11 @@ const requireAuth = (req, res, next) => {
         });
     }
     else {
-        res.redirect("/login");
+        if(applicant) {
+            res.redirect("/login");
+        }else if(recruiter){
+            res.redirect("/login_recruiter")
+        }
     }
     
 }
@@ -47,7 +56,32 @@ const checkApplicant = (req, res, next) => {
     }
 }
 
+//Check current recruiter
+const checkRecruiter = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token, "JobFinder secret", async (err, decodedToken) => {
+            if(err){
+                console.log(err.message);
+                res.locals.recruiter = null;
+                next();
+            }
+            else {
+                console.log(decodedToken);
+                let recruiter = await Recruiter.findById(decodedToken.id);
+                res.locals.recruiter = recruiter;
+                next();
+            }
+        });
+    }
+    else {
+        res.locals.recruiter = null;
+        next();
+    }
+}
+
 module.exports = {
     requireAuth,
-    checkApplicant
+    checkApplicant,
+    checkRecruiter
 };

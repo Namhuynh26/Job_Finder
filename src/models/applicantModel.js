@@ -4,17 +4,20 @@ const bcrypt = require("bcryptjs");
 const applicantSchema = new mongoose.Schema({
     email: {
         type: String,
-        require: true,
+        require: [true, "Email không được bỏ trống"],
         unique: true,
+        trim: true,
         lowcase: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Email không hợp lệ"]
     },
     password: {
         type: String,
-        require: true,
+        require: [true, "Mật khẩu không được bỏ trống"],
         minlength: 8
     },
     username: {
         type: String,
+        require: [true, "Tên người dùng không được bỏ trống"],
         minlength: 6
     },
     role: {
@@ -23,7 +26,7 @@ const applicantSchema = new mongoose.Schema({
     },  
     phone: {
         type: String,
-        require: true,
+        require: [true, "Số điện thoại không được bỏ trống"],
         unique: true
     },
     createAt: {
@@ -55,7 +58,7 @@ applicantSchema.pre("save", async function(next) {
 });
 
 //Statics method to login
-applicantSchema.statics.loginModel = async function(email, password) {
+applicantSchema.statics.login = async function(email, password) {
     const applicant = await this.findOne({email});
     if(applicant){
        const auth = await bcrypt.compare(password, applicant.password);

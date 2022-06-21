@@ -1,13 +1,13 @@
 const express = require("express");
 const {home, auth} = require("../controllers/index");
-const {requireAuth, checkApplicant} = require("../middlewares/authMiddleware");
+const {checkRecruiter, checkApplicant} = require("../middlewares/authMiddleware");
 
 
 let router = express.Router();
 
 let initRoutes = function(app) {
 
-    router.get("*", checkApplicant);
+    router.get("*",checkRecruiter, checkApplicant);
 
     router.get("/home", home.getHome);
     
@@ -36,6 +36,8 @@ let initRoutes = function(app) {
     router.get("/login_recruiter", function(req, res){
         res.render("auth/login_recruiter");
     });
+
+    router.post("/login_recruiter", auth.postLogin_Recruiter);
     
     router.get("/register", function(req, res){
         res.render("auth/register");
@@ -46,6 +48,8 @@ let initRoutes = function(app) {
     router.get("/register_recruiter", function(req, res){
         res.render("auth/register_recruiter");
     });
+
+    router.post("/register_recruiter", auth.postRegister_Recruiter);
     
     router.get("/privacy", function(req, res){
         res.render("pages/privacy");
