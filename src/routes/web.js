@@ -59,6 +59,10 @@ let initRoutes = function(app) {
         res.render("pages/recruiter_listing");
     });
 
+    router.get("/uploadCV", function(req, res) {
+        res.render("pages/uploadCV");
+    });
+
     router.get("/admin", function(req, res) {
         res.render("pages/admin");
     });

@@ -29,6 +29,10 @@ const applicantSchema = new mongoose.Schema({
         require: [true, "Số điện thoại không được bỏ trống"],
         unique: true
     },
+    CV: {
+        data: Buffer,
+        contentType: String
+    },
     createAt: {
         type: Date,
         default: Date.now
