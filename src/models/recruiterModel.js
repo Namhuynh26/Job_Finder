@@ -5,7 +5,7 @@ const validator = require("express-validator")
 const recruiterSchema = new mongoose.Schema({
     email: {
         type: String,
-        require: [true, "Email không được bỏ trống"],
+        required: [true, "Email không được bỏ trống"],
         unique: true,
         lowcase: true,
         trim: true,
@@ -13,13 +13,13 @@ const recruiterSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: [true,"Mật khẩu không được bỏ trống"],
+        required: [true,"Mật khẩu không được bỏ trống"],
         minlength: 8
     },
     name: {
         type: String,
         minlength: 6,
-        require: [true, "Tên người dùng không được bỏ trống"],
+        required: [true, "Tên người dùng không được bỏ trống"],
     },
     role: {
         type: String,
@@ -27,16 +27,16 @@ const recruiterSchema = new mongoose.Schema({
     }, 
     phone: {
         type: String,
-        require: [true, "Số điện thoại không được bỏ trống"],
+        required: [true, "Số điện thoại không được bỏ trống"],
         unique: true
     },
     nameOfCompany: {
         type: String,
-        require: [true, "Tên công ty không được bỏ trống"]
+        required: [true, "Tên công ty không được bỏ trống"]
     },
     address: {
         type: String,
-        require: [true, "Địa chỉ công ty không được bỏ trống"]
+        required: [true, "Địa chỉ công ty không được bỏ trống"]
     },
     createAt: {
         type: Date,

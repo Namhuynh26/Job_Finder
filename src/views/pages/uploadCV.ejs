@@ -1,6 +1,6 @@
 <%- include('../partials/header'); %>
 
-<section class="vh-100" style="margin: 40px 0 500px 0;">
+<section class="vh-100" style="margin: 20px 0 50px 0;">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -9,15 +9,15 @@
                 <div class="card-body p-5">
                   <h2 class="text-uppercase text-center mb-5">ĐĂNG CV CỦA BẠN</h2>
     
-                  <form method="post" action="/register_recruiter" data-remote="true">           
+                  <form method="post" action="/uploadCV" data-remote="true">           
                     
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form3Example1cg">Chọn file CV của bạn:</label>
-                        <input type="file" id="CV" class="form-control form-control-lg" placeholder="" name="CV" accept="file_extension"/>
+                        <label class="form-label" for="form3Example1cg">Chọn file CV của bạn (.pdf, .docx): </label>
+                        <input type="file" id="file" class="form-control form-control-lg" name="file" accept="file_extension"/>
                       </div>
 
                     <div class="d-flex justify-content-center">
-                      <button type="submit" class="btn btn-success btn-block btn-lg ">Đăng ký</button> <!--gradient-custom-4 text-body-->
+                      <button type="submit" class="btn btn-success btn-block btn-lg ">Tải CV</button> <!--gradient-custom-4 text-body-->
                     </div>
     
                   </form>      

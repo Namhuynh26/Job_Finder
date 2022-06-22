@@ -1,6 +1,8 @@
 const express = require("express");
 const {home, auth} = require("../controllers/index");
-const {checkRecruiter, checkApplicant} = require("../middlewares/authMiddleware");
+const {checkRecruiter, checkApplicant, requireAuth} = require("../middlewares/authMiddleware");
+const {upload} = require("../middlewares/uploadMiddle");
+const {singleFileUpload} = require("../controllers/userController");
 
 
 let router = express.Router();
@@ -62,6 +64,8 @@ let initRoutes = function(app) {
     router.get("/uploadCV", function(req, res) {
         res.render("pages/uploadCV");
     });
+
+    router.post("/uploadCV", upload.single("file"), singleFileUpload, requireAuth);
 
     router.get("/admin", function(req, res) {
         res.render("pages/admin");

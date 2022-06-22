@@ -28,6 +28,9 @@ app.use(express.urlencoded({extended: true}));
 //Init routes
 initRoutes(app);
 
+//Set disk storage\
+app.use(express.static("upload"));
+
 //cookies
 app.get("/set-cookies", (req, res) => {
     //res.setHeader("Set-Cookie", "newApplicant=true");
@@ -41,6 +44,8 @@ app.get("/read-cookies", (req, res) => {
 
     res.json(cookies);
 })
+
+//  
 
 
 app.listen(PORT, () => {

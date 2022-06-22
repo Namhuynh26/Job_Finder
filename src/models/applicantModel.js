@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const applicantSchema = new mongoose.Schema({
     email: {
         type: String,
-        require: [true, "Email không được bỏ trống"],
+        required: [true, "Email không được bỏ trống"],
         unique: true,
         trim: true,
         lowcase: true,
@@ -12,12 +12,12 @@ const applicantSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: [true, "Mật khẩu không được bỏ trống"],
+        required: [true, "Mật khẩu không được bỏ trống"],
         minlength: 8
     },
     username: {
         type: String,
-        require: [true, "Tên người dùng không được bỏ trống"],
+        required: [true, "Tên người dùng không được bỏ trống"],
         minlength: 6
     },
     role: {
@@ -26,12 +26,8 @@ const applicantSchema = new mongoose.Schema({
     },  
     phone: {
         type: String,
-        require: [true, "Số điện thoại không được bỏ trống"],
+        requiredd: [true, "Số điện thoại không được bỏ trống"],
         unique: true
-    },
-    CV: {
-        data: Buffer,
-        contentType: String
     },
     createAt: {
         type: Date,
