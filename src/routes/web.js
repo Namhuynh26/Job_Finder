@@ -68,8 +68,13 @@ let initRoutes = function(app) {
     router.post("/uploadCV", upload.single("file"), singleFileUpload, requireAuth);
 
     router.get("/admin", function(req, res) {
-        res.render("pages/admin");
+        res.render("partials/adminLayout");
     });
+
+    router.get("/jobList", function(req, res) {
+        res.render("adminPage/jobList");
+    });
+
 
     router.get("/logout", auth.getLogout);
 
