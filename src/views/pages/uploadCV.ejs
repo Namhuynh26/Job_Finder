@@ -9,11 +9,11 @@
                 <div class="card-body p-5">
                   <h2 class="text-uppercase text-center mb-5">ĐĂNG CV CỦA BẠN</h2>
     
-                  <form method="post" action="/uploadCV" data-remote="true">           
+                  <form method="post" action="/uploadCV" data-remote="true" enctype="multipart/form-data">           
                     
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example1cg">Chọn file CV của bạn (.pdf, .docx): </label>
-                        <input type="file" id="file" class="form-control form-control-lg" name="file" accept="file_extension"/>
+                        <input type="file" id="file" class="form-control form-control-lg" name="CV"/>
                       </div>
 
                     <div class="d-flex justify-content-center">

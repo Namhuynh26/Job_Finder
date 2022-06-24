@@ -45,8 +45,6 @@ app.get("/read-cookies", (req, res) => {
     res.json(cookies);
 })
 
-//  
-
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

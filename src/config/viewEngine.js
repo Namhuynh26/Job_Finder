@@ -6,6 +6,8 @@ const ConfigViewEngine = function(app) {
 
     app.use(express.static("public"));
 
+    app.use(express.static("uploads"));
+
 };
 
 module.exports = ConfigViewEngine;
