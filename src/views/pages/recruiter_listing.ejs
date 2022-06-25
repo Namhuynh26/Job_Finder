@@ -13,48 +13,17 @@
                         <div class="company-img">
                             <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                         </div>
-                        <div class="job-tittle job-tittle2">
-                            <a href="/detail">
-                                <h4>Nhà tuyển dụng</h4>
-                            </a>
-                            <ul>
-                                <li><i class="fas fa-map-marker-alt"></i>Địa chỉ</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-job-content end-->  
-                <!-- single-job-content -->
-                <div class="single-job-items mb-30">
-                    <div class="job-items">
-                        <div class="company-img">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                        </div>
-                        <div class="job-tittle job-tittle2">
-                            <a href="/detail">
-                                <h4>Nhà tuyển dụng</h4>
-                            </a>
-                            <ul>
-                                <li><i class="fas fa-map-marker-alt"></i>Địa chỉ</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- single-job-content end-->  
-                <!-- single-job-content -->
-                <div class="single-job-items mb-30">
-                    <div class="job-items">
-                        <div class="company-img">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                        </div>
-                        <div class="job-tittle job-tittle2">
-                            <a href="/detail">
-                                <h4>Nhà tuyển dụng</h4>
-                            </a>
-                            <ul>
-                                <li><i class="fas fa-map-marker-alt"></i>Địa chỉ</li>
-                            </ul>
-                        </div>
+                        <% recruiterList.forEach(list => { %>
+                            <div class="job-tittle job-tittle2">
+                                <a href="/detail">
+                                    <h4><%= list.namOfCompany %> </h4>
+                                </a>
+                                <ul>
+                                    <li><i class="fas fa-map-marker-alt"></i><%= list.provincecity %> </li>
+                                </ul>
+                            </div>
+                        <% }) %>  
+
                     </div>
                 </div>
                 <!-- single-job-content end-->   

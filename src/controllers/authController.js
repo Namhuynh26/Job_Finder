@@ -41,10 +41,8 @@ const postRegister = async (req, res) => {
 
     try {
         const applicant = await ApplicantModel.create({email, password, username, phone});
-        const token = createToken(applicant._id);
-        res.cookie("jwt", token, {httpOnly: true});
         res.redirect("/home");
-        res.status(201).json({applicant: applicant._id});    
+        res.status(201);    
     }
     catch(err) {
         let errors = handleError(err);
@@ -71,14 +69,12 @@ const postLogin = async (req, res) => {
 
 //Recruiter register
 const postRegister_Recruiter = async (req, res) => {
-    const {email, password, name, phone, nameOfCompany, address} = req.body; 
+    const {email, password, name, phone, nameOfCompany, address, provincecity} = req.body; 
 
     try {
-        const recruiter = await RecruiterModel.create({email, password, name, phone, nameOfCompany, address});
-        const token = createToken(recruiter._id);
-        res.cookie("jwt", token, {httpOnly: true});
+        const recruiter = await RecruiterModel.create({email, password, name, phone, nameOfCompany, address, provincecity});
         res.redirect("/home");
-        res.status(201).json({recruiter: recruiter._id});    
+        res.status(201);    
     }
     catch(err) {
         let errors = handleError(err);

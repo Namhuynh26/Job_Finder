@@ -1,6 +1,6 @@
 const express = require("express");
 const {home, auth, user} = require("../controllers/index");
-const {checkRecruiter, checkApplicant, requireAuth} = require("../middlewares/authMiddleware");
+const {uploadMid, searchingMid, authMid} = require("../middlewares/index");
 const {upload} = require("../middlewares/uploadMiddle");
 
 
@@ -8,9 +8,11 @@ let router = express.Router();
 
 let initRoutes = function(app) {
 
-    router.get("*",checkRecruiter, checkApplicant);
+    router.get("*", authMid.checkRecruiter, authMid.checkApplicant);
 
-    router.get("/home", home.getHome);
+    router.get("/home", function(req, res){
+        res.render("pages/home");
+    });
     
     router.get("/about", function(req, res){
         res.render("pages/about");
@@ -56,11 +58,9 @@ let initRoutes = function(app) {
         res.render("pages/privacy");
     });
     
-    router.get("/recruiters", function(req, res){
-        res.render("pages/recruiter_listing");
-    });
+    router.get("/recruiters", home.getListRecruiter);
 
-    router.get("/uploadCV", function(req, res) {
+    router.get("/uploadCV", authMid.requireAuth, function(req, res) {
         res.render("pages/uploadCV");
     });
 

@@ -38,6 +38,10 @@ const recruiterSchema = new mongoose.Schema({
         type: String,
         required: [true, "Địa chỉ công ty không được bỏ trống"]
     },
+    provincecity: {
+        type: String,
+        required: [true, "Tỉnh/thành phố không được bỏ trống"]
+    },
     createAt: {
         type: Date,
         default: Date.now

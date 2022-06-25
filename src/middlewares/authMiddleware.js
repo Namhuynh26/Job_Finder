@@ -10,11 +10,7 @@ const requireAuth = (req, res, next) => {
         jwt.verify(token, "JobFinder secret", (err, decodedToken) => {
             if(err){
                 console.log(err.message);
-                if(applicant) {
-                    res.redirect("/login");
-                }else if(recruiter){
-                    res.redirect("/login_recruiter")
-                }
+                res.redirect("/login");
             }
             else {
                 console.log(decodedToken);
@@ -23,11 +19,7 @@ const requireAuth = (req, res, next) => {
         });
     }
     else {
-        if(applicant) {
-            res.redirect("/login");
-        }else if(recruiter){
-            res.redirect("/login_recruiter")
-        }
+        res.redirect("/login");
     }
     
 }

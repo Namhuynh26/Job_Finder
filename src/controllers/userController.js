@@ -1,7 +1,7 @@
 const UploadModel = require("../models/uploadModel");
 const {searching} = require("../middlewares/index");
 
-//Upload Cv
+//Upload CV
 const singleFileUpload = async(req, res, next) => {
     try {
         const file = new UploadModel({
@@ -11,7 +11,8 @@ const singleFileUpload = async(req, res, next) => {
             fileSize: fileSizeFormat(req.file.size, 2) //0.00
         });
         await file.save();
-        res.status(201).send("File upload thành công");
+        res.redirect("/home");
+        res.status(201).json("File upload thành công");
     }catch (error) {
         res.status(400).send(error.message);
     }
