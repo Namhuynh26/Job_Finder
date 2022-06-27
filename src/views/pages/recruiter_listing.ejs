@@ -8,23 +8,22 @@
             <div class="container" style="display: flex; width: 1000px">
                 <!-- Count of Job list End -->
                 <!-- single-job-content -->
-                <div class="single-job-items mb-30">
-                    <div class="job-items">
-                        <div class="company-img">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                        </div>
-                        <% recruiterList.forEach(list => { %>
+                <div class="single-job-items mb-30" style="width: 100%;">
+                    <% recruiterList.forEach(recruiters => { %>
+                        <div class="job-items">
+                            <div class="company-img">
+                                <a href=""><img src="assets/img/icon/job-list1.png" alt=""></a>
+                            </div>
                             <div class="job-tittle job-tittle2">
-                                <a href="/detail">
-                                    <h4><%= list.namOfCompany %> </h4>
+                                <a href="">
+                                    <h4><%= recruiters.nameOfCompany %> </h4>
                                 </a>
                                 <ul>
-                                    <li><i class="fas fa-map-marker-alt"></i><%= list.provincecity %> </li>
+                                    <li><i class="fas fa-map-marker-alt"></i><%= recruiters.provincecity %>  </li>
                                 </ul>
                             </div>
-                        <% }) %>  
-
-                    </div>
+                        </div>
+                    <% }) %> 
                 </div>
                 <!-- single-job-content end-->   
                   

@@ -10,9 +10,7 @@ let initRoutes = function(app) {
 
     router.get("*", authMid.checkRecruiter, authMid.checkApplicant);
 
-    router.get("/home", function(req, res){
-        res.render("pages/home");
-    });
+    router.get("/home", home.getListRecruiterHome);
     
     router.get("/about", function(req, res){
         res.render("pages/about");
@@ -31,7 +29,8 @@ let initRoutes = function(app) {
     });
     
     router.get("/login", function(req, res){
-        res.render("auth/login");
+        let alert = req.errors;
+        res.render("auth/login", {alert});
     });
 
     router.post("/login", auth.postLogin);
@@ -74,6 +73,9 @@ let initRoutes = function(app) {
         res.render("adminPage/jobList");
     });
 
+    router.get("/postJob", function(req, res) {
+        res.render("pages/postJob");
+    });
 
     router.get("/logout", auth.getLogout);
 

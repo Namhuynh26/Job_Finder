@@ -1,15 +1,22 @@
 const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema({
-    typeOfPost: {
+    id: {
         type: String
     },
-    price: {
-        type: Number,
-        default: 0
+    keyJob: {
+        type: String
     },
-    remainDate: {
-        type: Date
+    keyRecruiter: {
+        type: String
+    },
+    active: {
+        type: Boolean,
+        default: false
+    },
+    dateOfPost: {
+        type: Date,
+        default: new Date()
     }
 });
 

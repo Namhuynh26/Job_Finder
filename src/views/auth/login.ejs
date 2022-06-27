@@ -52,6 +52,17 @@
                                     <div class="form-group mb-3"> <input id="inputPassword" name="password" type="password" placeholder="Mật khẩu" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-danger"><br> </div>
                                     <div class="password error"></div>
                                     <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="margin-left: 50px;">ĐĂNG NHẬP</button>
+                                    <% if(typeof errors != 'undefined') {%>
+                                        <% alert.forEach(function(err) { %>
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <%= err.msg %>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button> 
+                                            </div>
+                                        <% }) %>  
+                                    <% } %>  
+                                    
                                     <div class="text-center d-flex justify-content-between mt-4">
                                         <p> Hoặc &nbsp<a href="/register" class="font-italic text-muted"> <u>Tạo tài khoản</u></a></p>
                                     </div>

@@ -63,6 +63,7 @@ const postLogin = async (req, res) => {
     }
     catch (err){
         let errors = handleError(err);
+        req.flash("errors", errors);
         res.status(400).json({errors});
     }
 }

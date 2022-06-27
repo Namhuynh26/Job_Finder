@@ -17,10 +17,11 @@
                         <div class="row">
                             <div class="col-xl-8">
                                 <!-- form -->
-                                <form action="#" class="search-box">
-                                    <div class="input-form">
+                                <form action="#" class="search-box" style="width: 80%;">
+                                    <div class="input-form" style="width: 79%;">
                                         <input type="text" placeholder="Nhập từ khóa...">
                                     </div>
+                                    <!--
                                     <div class="select-form">
                                         <div class="select-itms">
                                             <select name="select" id="select1">
@@ -29,6 +30,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    -->
                                     <div class="search-form">
                                         <a href="#">Tìm kiếm</a>
                                     </div>	
@@ -420,19 +422,22 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="single-job-items mb-30" style="justify-content: center;">
-                    <div class="job-items">
-                        <div class="company-img">
-                            <a href="job_details.ejs"><img src="./assets/img/icon/job-list3.png" alt=""></a>
+                <div class="single-job-items mb-30" style="justify-content: center; width: 100%;" >
+                    <% recruiterList.forEach(recruiters => { %>
+                        <div class="job-items" style="margin-right: 50px;">
+                            <div class="company-img">
+                                <a href=""><img src="assets/img/icon/job-list1.png" alt=""></a>
+                            </div>
+                            <div class="job-tittle job-tittle2">
+                                <a href="">
+                                    <h4><%= recruiters.nameOfCompany %> </h4>
+                                </a>
+                                <ul>
+                                    <li><i class="fas fa-map-marker-alt"></i><%= recruiters.provincecity %>  </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="job-tittle">
-                            <a href="job_details.ejs"><h4>Tên công ty</h4></a>
-                            <ul>
-                                <li>Position</li>
-                                <li><i class="fas fa-map-marker-alt"></i>Địa điểm</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <% }) %> 
                 </div>
             </div>
             
