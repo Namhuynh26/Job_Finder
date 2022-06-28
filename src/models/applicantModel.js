@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const applicantSchema = new mongoose.Schema({
+    
     email: {
         type: String,
         required: [true, "Email không được bỏ trống"],

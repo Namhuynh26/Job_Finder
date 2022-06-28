@@ -1,6 +1,6 @@
 const express = require("express");
-const {home, auth, user} = require("../controllers/index");
-const {uploadMid, searchingMid, authMid} = require("../middlewares/index");
+const {home, auth, applicantCtrl, recruiterCtrl} = require("../controllers/index");
+const {authMid} = require("../middlewares/index");
 const {upload} = require("../middlewares/uploadMiddle");
 
 
@@ -63,7 +63,7 @@ let initRoutes = function(app) {
         res.render("pages/uploadCV");
     });
 
-    router.post("/uploadCV", upload.single("CV"), user.singleFileUpload);
+    router.post("/uploadCV", upload.single("CV"), applicantCtrl.singleFileUpload);
 
     router.get("/admin", function(req, res) {
         res.render("partials/adminLayout");
@@ -76,6 +76,8 @@ let initRoutes = function(app) {
     router.get("/postJob", function(req, res) {
         res.render("pages/postJob");
     });
+
+    router.post("/postJob", recruiterCtrl.postJob, authMid.checkRecruiter);
 
     router.get("/logout", auth.getLogout);
 

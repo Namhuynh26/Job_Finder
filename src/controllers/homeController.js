@@ -1,5 +1,6 @@
 const Recruiter = require("../models/recruiterModel"); 
 
+//Show list recruiter in home page
 const getListRecruiterHome = (req, res) => {
     Recruiter.find({}, function(err, recruiters) {
         res.render("pages/home", {
@@ -7,7 +8,7 @@ const getListRecruiterHome = (req, res) => {
         });
     });
 }
-
+    
 
 const getListRecruiter = (req, res) => {
     Recruiter.find({}, function(err, recruiters) {

@@ -1,13 +1,17 @@
 const authController = require("./authController");
 const homeController = require("./homeController");
-const userController = require("./userController");
+const applicantController = require("./applicantController");
+const recruiterController = require("./recruiterController");
 
 const auth = authController;
 const home = homeController; 
-const user = userController;
+const applicantCtrl = applicantController;
+const recruiterCtrl = recruiterController;
+
 
 module.exports = {
     home,
     auth,
-    user
+    applicantCtrl,
+    recruiterCtrl
 };
