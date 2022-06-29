@@ -5,7 +5,7 @@ const postJob = async (req, res) => {
     const {title, category, salary, type, description, skills, amountOfApplicant, deadline} = req.body;
 
     try {
-        if(req.cookies.id == recruiter.id){
+        if(req.cookies.id == _id){
             const job = await JobModel.create({title, category, salary, type, description, skills, amountOfApplicant, deadline});
             res.redirect("/home");
             res.status(201); 

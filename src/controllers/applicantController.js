@@ -1,5 +1,6 @@
 const UploadModel = require("../models/uploadModel");
 const {searching} = require("../middlewares/index");
+const Applicant = require("../models/applicantModel");
 
 //Upload CV
 const singleFileUpload = async(req, res, next) => {
@@ -29,17 +30,17 @@ const fileSizeFormat = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "-" + sizes[index];
 }
 
-//Searching
-let searchRecruiter = async (req, res, next) =>{
-    let name = req.params.search;
-    
-    let recruiter = await searching.getRecruiterByName(name);
-    
-    return res.render('admin/customer.ejs', {
-        recruiter: recruiter
-    });
-}
+//Update applicant
+const updateApplicant = async(req, res) => {
+    Applicant.findOneAndUpdate({email: req.body.email}, req.body)
+        .then(doc => {
+            if(!doc) {return res.status(404).end();}
+            return res.status(200).json(doc);
+        })
+        .catch(err => next(err));
+};
 
 module.exports = {
-    singleFileUpload
+    singleFileUpload,
+    updateApplicant
 };

@@ -1,5 +1,5 @@
 const express = require("express");
-const {home, auth, applicantCtrl, recruiterCtrl} = require("../controllers/index");
+const {homeCtrl, authCtrl, applicantCtrl, recruiterCtrl} = require("../controllers/index");
 const {authMid} = require("../middlewares/index");
 const {upload} = require("../middlewares/uploadMiddle");
 
@@ -10,7 +10,7 @@ let initRoutes = function(app) {
 
     router.get("*", authMid.checkRecruiter, authMid.checkApplicant);
 
-    router.get("/home", home.getListRecruiterHome);
+    router.get("/home", homeCtrl.getListRecruiterHome);
     
     router.get("/about", function(req, res){
         res.render("pages/about");
@@ -29,35 +29,34 @@ let initRoutes = function(app) {
     });
     
     router.get("/login", function(req, res){
-        let alert = req.errors;
-        res.render("auth/login", {alert});
+        res.render("auth/login");
     });
 
-    router.post("/login", auth.postLogin);
+    router.post("/login", authCtrl.postLogin);
     
     router.get("/login_recruiter", function(req, res){
         res.render("auth/login_recruiter");
     });
 
-    router.post("/login_recruiter", auth.postLogin_Recruiter);
+    router.post("/login_recruiter", authCtrl.postLogin_Recruiter);
     
     router.get("/register", function(req, res){
         res.render("auth/register");
     });
 
-    router.post("/register", auth.postRegister);
+    router.post("/register", authCtrl.postRegister);
     
     router.get("/register_recruiter", function(req, res){
         res.render("auth/register_recruiter");
     });
 
-    router.post("/register_recruiter", auth.postRegister_Recruiter);
+    router.post("/register_recruiter", authCtrl.postRegister_Recruiter);
     
     router.get("/privacy", function(req, res){
         res.render("pages/privacy");
     });
     
-    router.get("/recruiters", home.getListRecruiter);
+    router.get("/recruiters", homeCtrl.getListRecruiter);
 
     router.get("/uploadCV", authMid.requireAuth, function(req, res) {
         res.render("pages/uploadCV");
@@ -73,13 +72,19 @@ let initRoutes = function(app) {
         res.render("adminPage/jobList");
     });
 
+    router.get("/updateApplicant", function(req, res) {
+        res.render("pages/updateApplicant");
+    });
+
+    router.put("/updateApplicant", applicantCtrl.updateApplicant, authMid.checkApplicant);
+
     router.get("/postJob", function(req, res) {
         res.render("pages/postJob");
     });
 
     router.post("/postJob", recruiterCtrl.postJob, authMid.checkRecruiter);
 
-    router.get("/logout", auth.getLogout);
+    router.get("/logout", authCtrl.getLogout);
 
 
     return app.use("/", router);
