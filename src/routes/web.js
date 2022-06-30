@@ -72,9 +72,7 @@ let initRoutes = function(app) {
         res.render("adminPage/jobList");
     });
 
-    router.get("/updateApplicant", function(req, res) {
-        res.render("pages/updateApplicant");
-    });
+    router.get("/updateApplicant", applicantCtrl.updateLoad, authMid.requireAuth);
 
     router.put("/updateApplicant", applicantCtrl.updateApplicant, authMid.checkApplicant);
 

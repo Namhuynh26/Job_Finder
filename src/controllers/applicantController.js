@@ -30,17 +30,41 @@ const fileSizeFormat = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "-" + sizes[index];
 }
 
+//Update load
+const updateLoad = async(req, res) => {
+    try {
+        const email = req.query.email;
+
+        const applicantData = await Applicant.findOne({email : email});
+
+        if(applicantData) {
+            res.render("pages/updateApplicant", {applicant: applicantData});
+        }
+        else {
+            res.redirect("/home");
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 //Update applicant
 const updateApplicant = async(req, res) => {
-    Applicant.findOneAndUpdate({email: req.body.email}, req.body)
-        .then(doc => {
-            if(!doc) {return res.status(404).end();}
-            return res.status(200).json(doc);
-        })
-        .catch(err => next(err));
+    Applicant.findOneAndUpdate({email: req.params.email}, {
+        $set: {
+            username: req.body.username,
+            phone: req.body.phone
+        }
+    }, (err, result) => {
+        if(err) return res.status(500).json({msg: err});
+        return res.json({
+            msg: "Cập nhật thành công"
+        });
+    });
 };
 
 module.exports = {
     singleFileUpload,
+    updateLoad,
     updateApplicant
 };
