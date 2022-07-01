@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const validator = require("express-validator")
 
 const recruiterSchema = new mongoose.Schema({
     email: {
@@ -42,6 +41,10 @@ const recruiterSchema = new mongoose.Schema({
         type: String,
         required: [true, "Tỉnh/thành phố không được bỏ trống"]
     },
+    job: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Jobs"
+    }],
     createAt: {
         type: Date,
         default: Date.now

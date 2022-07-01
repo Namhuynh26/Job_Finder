@@ -2,19 +2,27 @@ const JobModel = require("../models/jobModel");
 
 
 const postJob = async (req, res) => {
-    const {title, category, salary, type, description, skills, amountOfApplicant, deadline} = req.body;
 
-    try {
-        if(req.cookies.id == _id){
-            const job = await JobModel.create({title, category, salary, type, description, skills, amountOfApplicant, deadline});
-            res.redirect("/home");
-            res.status(201); 
-        }      
-    }
-    catch(err) {
-        let errors = handleError(err);
-        res.status(400).json({errors});
-    }
+    const data = req.body;
+
+    let job = new JobModel({
+        recruiter: res.locals.recruiter,
+        title: data.title,
+        category: data.category,
+        description: data.description,
+        skills: data.skills,
+        type: data.type,
+        salary: data.salary,
+        amountOfApplicant: data.amountOfApplicant,
+        deadline: data.deadline
+    });
+
+    job.save().then(() => {
+        res.json({message: "Đăng bài thành công"});
+        res.redirect("/home");
+    }).catch((err) => {
+        res.status(400).json(err);
+    });
     
 };
 

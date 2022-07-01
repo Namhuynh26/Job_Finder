@@ -8,21 +8,35 @@
                 <div class="card-body p-5">
                   <h2 class="text-uppercase text-center mb-5">ĐĂNG KÝ ỨNG VIÊN</h2>
     
-                  <form method="post" action="/register_recruiter" data-remote="true">           
+                  <form method="post" action="/postJob" data-remote="true">           
                     <div class="form-left">
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form3Example3cg">Công việc cần ứng tuyển*</label>
                             <input type="text" id="form3Example3cg" class="form-control form-control-lg" placeholder="Nhập công việc cần ứng tuyển" name="title"/>  
                         </div>
+
+                        <div class="form-outline mb-4">
+                          <label for="form3Example1cg">Ngành nghề*</label>
+                          <select id="form3Example1cg" class="form-control form-control-lg" name="category">
+                            <option>IT</option>
+                            <option>Marketing</option>
+                            <option>Tài chính</option>
+                            <option>Kế toán</option>
+                            <option>Ngân hàng</option>
+                            <option>Nhân sự</option>
+                            <option>Kiến trúc</option>
+                            <option>Bất động sản</option>
+                          </select>
+                        </div>
           
-                          <div class="form-outline mb-4">
+                          <div class="form-outline mb-4" style="margin-top: 70px;">
                             <label class="form-label" for="form3Example4cdg">Lương*</label>
                             <input type="text" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Nhập mức lương đề xuất" name="salary"/>  
                           </div>
 
                           <div class="form-outline mb-4">
                             <label for="form3Example1cg">Hình thức*</label>
-                            <select id="form3Example1cg" class="form-control form-control-lg" name="typeJob">
+                            <select id="form3Example1cg" class="form-control form-control-lg" name="type">
                               <option>Full-time</option>
                               <option>Part-time</option>
                               <option>Remote</option>
@@ -36,7 +50,7 @@
           
                           <div class="form-outline mb-4">
                             <label class="form-label" for="form3Example1cg">Số lượng tuyển*</label>
-                            <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập số lượng tuyển dụng" name="address"/>
+                            <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Nhập số lượng tuyển dụng" name="amountOfApplicant"/>
                           </div>
 
                           <div class="form-outline mb-4">
@@ -49,21 +63,6 @@
                             <input type="date" id="form3Example1cg" class="form-control" placeholder="Chọn hạn ứng tuyển" name="deadline"/>
                           </div>
 
-                          <div class="form-outline mb-4">
-                            <label for="form3Example1cg">Tỉnh/thành phố*</label>
-                            <select id="form3Example1cg" class="form-control form-control-lg" name="provincecity">
-                              <option value="0">Tỉnh/thành phố</option>
-                              <option value="1">Hồ Chí Minh</option>
-                              <option value="2">Hà Nội</option>
-                              <option value="3">Bình Dương</option>
-                              <option value="4">Đà Nẵng</option>
-                              <option value="5">Đồng Nai</option>
-                              <option value="6">Cần Thơ</option>
-                              <option value="7">Bắc Ninh</option>
-                              <option value="8">Hải Phòng</option>
-                              <option value="9">Bình Định</option>
-                            </select>
-                          </div>
                         <div class="d-flex justify-content-center" style="margin-top: 80px;">
                             <button type="submit" class="btn btn-success btn-block btn-lg ">Đăng bài</button> <!--gradient-custom-4 text-body-->
                         </div>

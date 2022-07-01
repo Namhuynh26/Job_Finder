@@ -68,8 +68,8 @@ let initRoutes = function(app) {
         res.render("partials/adminLayout");
     });
 
-    router.get("/jobList", function(req, res) {
-        res.render("adminPage/jobList");
+    router.get("/listJob", function(req, res) {
+        res.render("adminPage/listJob");
     });
 
     router.get("/updateApplicant", applicantCtrl.updateLoad, authMid.requireAuth);
@@ -80,7 +80,7 @@ let initRoutes = function(app) {
         res.render("pages/postJob");
     });
 
-    router.post("/postJob", recruiterCtrl.postJob, authMid.checkRecruiter);
+    router.post("/postJob", authMid.checkRecruiter, recruiterCtrl.postJob);
 
     router.get("/logout", authCtrl.getLogout);
 
