@@ -200,28 +200,32 @@
                                     </div>
                                 </div>
                                 <!-- Count of Job list End -->
-                                <!-- single-job-content -->
+                                <% jobList.forEach(job => { %> 
+                                    <!-- single-job-content -->
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
                                             <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="/detail">
-                                                <h4>Ngành</h4>
+                                            <a href="/detail/:id">
+                                                <h4><%= job.title %> </h4>
                                             </a>
                                             <ul>
-                                                <li>Vị trí ứng tuyển</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Địa chỉ</li>
-                                                <li>Lương</li>
+                                                <li><%= job.category %> </li>
+                                                <li><i class="fas fa-map-marker-alt"></i><%= job.provincecity %> </li>
+                                                <li><%= job.salary %> VNĐ</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>Thời gian</span>
+                                        <ul style="text-align: right;">
+                                            <li><%= job.type %></li>
+                                            <li><%= job.deadline %> </li>
+                                        </ul>
                                     </div>
                                 </div>
+                                <% }) %> 
                             </div>
                         </section>
                         <!-- Featured_job_end -->

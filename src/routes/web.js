@@ -20,13 +20,9 @@ let initRoutes = function(app) {
         res.render("pages/contact");
     });
     
-    router.get("/jobs", function(req, res){
-        res.render("pages/job_listing");
-    });
+    router.get("/jobs", homeCtrl.getList);
     
-    router.get("/detail", function(req, res){
-        res.render("pages/job_details");
-    });
+    router.get("/detail/:id", homeCtrl.getDetail);
     
     router.get("/login", function(req, res){
         res.render("auth/login");

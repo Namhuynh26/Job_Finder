@@ -1,5 +1,4 @@
 <%- include('../partials/header'); -%> 
-
     <main>
         <!-- Hero Area Start-->
         <!--
@@ -31,12 +30,11 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>Tên công việc</h4>
+                                        <h4><%= detail.title %> </h4>
                                     </a>
                                     <ul>
-                                        <li>Tên công ty</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Địa điểm</li>
-                                        <li>$Lương</li>
+                                        <li><%= detail.nameOfCompany %> </li>
+                                        <li><i class="fas fa-map-marker-alt"></i><%= detail.provincecity %> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -49,20 +47,14 @@
                                 <div class="small-section-tittle">
                                     <h4>Mô tả công việc</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+                                <p><%= detail.description %> </p>
                             </div>
                             <div class="post-details2  mb-50">
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle" style="padding-top: 10px;">
                                     <h4>Yêu cầu</h4>
                                 </div>
-                                <ul>
-                                    <li>System Software Development</li>
-                                    <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                    <li>Research and code , libraries, APIs and frameworks</li>
-                                    <li>Strong knowledge on software development life cycle</li>
-                                    <li>Strong problem solving and debugging skills</li>
-                                </ul>
+                                <div><%= detail.skills %> </div>
                             </div>
                         </div>
 
@@ -75,12 +67,11 @@
                             <h4>Tổng quan</h4>
                         </div>
                         <ul>
-                            <li>Ngày đăng : <span>12 Aug 2019</span></li>
-                            <li>Đia điểm : <span>New York</span></li>
-                            <li>Số lượng tuyển : <span>02</span></li>
-                            <li>Loại công việc : <span>Full time</span></li>
-                            <li>Lương :  <span>$7,800 yearly</span></li>
-                            <li>Hạn ứng tuyển : <span>12 Sep 2020</span></li>
+                            <li>Ngày đăng : <span></span></li>
+                            <li>Số lượng tuyển : <span><%= detail.amountOfApplicant %> </span></li>
+                            <li>Loại công việc : <span><%= detail.type %> </span></li>
+                            <li>Lương :  <span><%= detail.salary %> </span></li>
+                            <li>Hạn ứng tuyển : <span><%= detail.deadline %> </span></li>
                         </ul>
                         <div class="apply-btn2">
                             <a href="#" class="btn">Ứng tuyển ngay</a>
@@ -92,8 +83,9 @@
                             <h4>Thông tin liên hệ</h4>
                         </div>
                             <ul>
-                                <li>Tên công ty: <span>Colorlib </span></li>
-                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                                <li>Email: <span><%= detail.email %> </span></li>
+                                <li>Số điện thoại: <span><%= detail.phone %>  </span></li>
+                                <li>Địa chỉ: <span><%= detail.address %> </span></li>
                             </ul>
                     </div>
                     </div>
