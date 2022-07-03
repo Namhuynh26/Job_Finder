@@ -1,0 +1,40 @@
+<%- include('../partials/header'); -%> 
+    <main style="margin: 50px; margin-bottom: 80px;">
+        <!--Searching-->
+            <form method="get" action="/search" >
+                <div class="input-group mb-3" style="width: 70%; margin-left: 170px; margin-bottom: 50px;">
+                    <input type="text" class="form-control" placeholder="Nhập từ khóa" name="keyword">
+                    <button type="submit" class="btn1 btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+        <!--Searching end-->
+        <h3 style="margin-top: 30px;">Kết quả tìm kiếm: </h3> 
+        <% jobList.forEach(job => { %> 
+            <!-- single-job-content -->
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="/detail/<%= job.id %> ">
+                            <h4><%= job.title %> </h4>
+                        </a>
+                        <ul>
+                            <li><%= job.category %> </li>
+                            <li><i class="fas fa-map-marker-alt"></i><%= job.recruiter.provincecity %> </li>
+                            <li>$ <%= job.salary %></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="items-link items-link2 f-right">
+                    <ul style="text-align: right;">
+                        <li><%= job.type %></li>
+                        <li><%= job.deadline %> </li>
+                    </ul>
+                </div>
+            </div>
+        <% }) %> 
+
+    </main>
+<%- include('../partials/footer'); -%> 

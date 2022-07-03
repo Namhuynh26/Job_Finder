@@ -80,6 +80,7 @@ let initRoutes = function(app) {
 
     router.get("/logout", authCtrl.getLogout);
 
+    router.get("/search", homeCtrl.getSearchKey);
 
     return app.use("/", router);
 }

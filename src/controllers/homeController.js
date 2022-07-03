@@ -1,6 +1,5 @@
 const Recruiter = require("../models/recruiterModel"); 
 const Job = require("../models/jobModel");  
-const mongoose = require("mongoose");
 
 //Show list in home page
 const getHome = async (req, res) => {
@@ -47,9 +46,26 @@ const getDetail = (req, res) => {
     });
 }
 
+//Searching
+const getSearchKey =  (req, res) => {
+    const {keyword} = req.query;
+    const {select} = req.body;
+    console.log(select);
+    console.log(keyword);
+    Job.find({title: {$regex: keyword, $options: 'i'}, provincecity: select}).populate("recruiter").exec(function(err, job) {
+        if(err) {
+            message: err;
+        } else {
+            res.render("pages/searchResult", {jobList: job});
+        }
+    });
+    
+}
+
 module.exports = {
     getHome,
     getListRecruiter,
     getList,
-    getDetail
+    getDetail, 
+    getSearchKey
 };
