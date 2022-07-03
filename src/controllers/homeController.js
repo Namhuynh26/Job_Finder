@@ -42,6 +42,7 @@ const getDetail = (req, res) => {
             return res.json({error: err});
         }
         console.log(id);
+        console.log(detail.recruiter.provincecity);
         res.render("pages/job_details", {details: detail});
     });
 }
@@ -54,7 +55,7 @@ const getSearchKey =  (req, res) => {
     console.log(keyword);
     Job.find({title: {$regex: keyword, $options: 'i'}, provincecity: select}).populate("recruiter").exec(function(err, job) {
         if(err) {
-            message: err;
+            return res.json({error: err});
         } else {
             res.render("pages/searchResult", {jobList: job});
         }

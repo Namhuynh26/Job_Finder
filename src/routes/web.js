@@ -68,7 +68,10 @@ let initRoutes = function(app) {
         res.render("adminPage/listJob");
     });
 
-    router.get("/updateApplicant", applicantCtrl.updateLoad, authMid.requireAuth);
+    router.get("/profile", authMid.checkApplicant, function(req, res){
+        var {email, username, phone} = req.params;
+        res.render("pages/profile", {email: email, username: username, phone: phone});
+    });
 
     router.put("/updateApplicant", applicantCtrl.updateApplicant, authMid.checkApplicant);
 
@@ -81,6 +84,7 @@ let initRoutes = function(app) {
     router.get("/logout", authCtrl.getLogout);
 
     router.get("/search", homeCtrl.getSearchKey);
+    
 
     return app.use("/", router);
 }

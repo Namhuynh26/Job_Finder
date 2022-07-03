@@ -30,23 +30,6 @@ const fileSizeFormat = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "-" + sizes[index];
 }
 
-//Update load
-const updateLoad = async(req, res) => {
-    try {
-        const email = req.query.email;
-
-        const applicantData = await Applicant.findOne({email : email});
-
-        if(applicantData) {
-            res.render("pages/updateApplicant", {applicant: applicantData});
-        }
-        else {
-            res.redirect("/home");
-        }
-    } catch (error) {
-        console.log(error.message);
-    }
-}
 
 //Update applicant
 const updateApplicant = async(req, res) => {
@@ -65,6 +48,5 @@ const updateApplicant = async(req, res) => {
 
 module.exports = {
     singleFileUpload,
-    updateLoad,
     updateApplicant
 };
