@@ -1,4 +1,4 @@
-<%- include('../partials/header'); -%> 
+<%- include('../partials/header'); %>
     <main>
         <!-- Hero Area Start-->
         <!--
@@ -30,11 +30,11 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4><%= detail.title %> </h4>
+                                        <h4><%= details.title %> </h4>
                                     </a>
                                     <ul>
-                                        <li><%= detail.nameOfCompany %> </li>
-                                        <li><i class="fas fa-map-marker-alt"></i><%= detail.provincecity %> </li>
+                                        <li><%= details.nameOfCompany %> </li>
+                                        <li><i class="fas fa-map-marker-alt"></i><%= details.provincecity %> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -47,14 +47,14 @@
                                 <div class="small-section-tittle">
                                     <h4>Mô tả công việc</h4>
                                 </div>
-                                <p><%= detail.description %> </p>
+                                <p><%= details.description %> </p>
                             </div>
                             <div class="post-details2  mb-50">
                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle" style="padding-top: 10px;">
                                     <h4>Yêu cầu</h4>
                                 </div>
-                                <div><%= detail.skills %> </div>
+                                <div><%= details.skills %> </div>
                             </div>
                         </div>
 
@@ -68,10 +68,10 @@
                         </div>
                         <ul>
                             <li>Ngày đăng : <span></span></li>
-                            <li>Số lượng tuyển : <span><%= detail.amountOfApplicant %> </span></li>
-                            <li>Loại công việc : <span><%= detail.type %> </span></li>
-                            <li>Lương :  <span><%= detail.salary %> </span></li>
-                            <li>Hạn ứng tuyển : <span><%= detail.deadline %> </span></li>
+                            <li>Số lượng tuyển : <span><%= details.amountOfApplicant %> </span></li>
+                            <li>Loại công việc : <span><%= details.type %> </span></li>
+                            <li>Lương :  <span><%= details.salary %> </span></li>
+                            <li>Hạn ứng tuyển : <span><%= details.deadline %> </span></li>
                         </ul>
                         <div class="apply-btn2">
                             <a href="#" class="btn">Ứng tuyển ngay</a>
@@ -83,12 +83,12 @@
                             <h4>Thông tin liên hệ</h4>
                         </div>
                             <ul>
-                                <li>Email: <span><%= detail.email %> </span></li>
-                                <li>Số điện thoại: <span><%= detail.phone %>  </span></li>
-                                <li>Địa chỉ: <span><%= detail.address %> </span></li>
+                                <li>Email: <span><%= details.email %> </span></li>
+                                <li>Số điện thoại: <span><%= details.phone %>  </span></li>
+                                <li>Địa chỉ: <span><%= details.address %> </span></li>
                             </ul>
-                    </div>
-                    </div>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -96,4 +96,4 @@
 
     </main>
 
-<%- include('../partials/footer'); -%> 
+<%- include('../partials/footer'); %>

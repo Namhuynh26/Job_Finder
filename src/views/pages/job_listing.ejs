@@ -208,13 +208,13 @@
                                             <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="/detail/:id">
+                                            <a href="/detail/<%= job.id %> ">
                                                 <h4><%= job.title %> </h4>
                                             </a>
                                             <ul>
                                                 <li><%= job.category %> </li>
                                                 <li><i class="fas fa-map-marker-alt"></i><%= job.provincecity %> </li>
-                                                <li><%= job.salary %> VNĐ</li>
+                                                <li>$ <%= job.salary %></li>
                                             </ul>
                                         </div>
                                     </div>

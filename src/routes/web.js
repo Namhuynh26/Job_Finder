@@ -10,7 +10,7 @@ let initRoutes = function(app) {
 
     router.get("*", authMid.checkRecruiter, authMid.checkApplicant);
 
-    router.get("/home", homeCtrl.getListRecruiterHome);
+    router.get("/home", homeCtrl.getHome);
     
     router.get("/about", function(req, res){
         res.render("pages/about");
