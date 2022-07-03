@@ -57,7 +57,7 @@ const getSearchKey =  (req, res) => {
         if(err) {
             return res.json({error: err});
         } else {
-            res.render("pages/searchResult", {jobList: job});
+            res.render("pages/job_listing", {jobList: job});
         }
     });
     
