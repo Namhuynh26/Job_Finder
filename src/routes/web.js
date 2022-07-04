@@ -1,5 +1,5 @@
 const express = require("express");
-const {homeCtrl, authCtrl, applicantCtrl, recruiterCtrl} = require("../controllers/index");
+const {homeCtrl, authCtrl, applicantCtrl, recruiterCtrl, adminCtrl} = require("../controllers/index");
 const {authMid} = require("../middlewares/index");
 const {upload} = require("../middlewares/uploadMiddle");
 
@@ -54,24 +54,27 @@ let initRoutes = function(app) {
     
     router.get("/recruiters", homeCtrl.getListRecruiter);
 
-    router.get("/uploadCV", authMid.requireAuth, function(req, res) {
-        res.render("pages/uploadCV");
-    });
+    router.get("/uploadCV", authMid.requireAuth, applicantCtrl.getCV);
 
-    router.post("/uploadCV", upload.single("CV"), applicantCtrl.singleFileUpload);
+    router.post("/uploadCV", upload.single("CV"), authMid.checkApplicant, applicantCtrl.singleFileUpload);
 
     router.get("/admin", function(req, res) {
-        res.render("partials/adminLayout");
+        res.render("adminPage/index");
     });
+
+    router.get("/approve", adminCtrl.getJobAdmin);
+    router.get("/applicant", adminCtrl.getApplicantAdmin);
+    router.get("/recruiter", adminCtrl.getRecruitertAdmin);
+    router.get("/login_admin", function(req, res) {
+        res.render("adminPage/login");
+    });
+    router.post("/login_admin", authCtrl.postLogin_Admin);
 
     router.get("/listJob", function(req, res) {
         res.render("adminPage/listJob");
     });
 
-    router.get("/profile", authMid.checkApplicant, function(req, res){
-        var {email, username, phone} = req.params;
-        res.render("pages/profile", {email: email, username: username, phone: phone});
-    });
+    router.get("/profile", authMid.checkApplicant, applicantCtrl.getProfile);
 
     router.put("/updateApplicant", applicantCtrl.updateApplicant, authMid.checkApplicant);
 
@@ -82,6 +85,8 @@ let initRoutes = function(app) {
     router.post("/postJob", authMid.checkRecruiter, recruiterCtrl.postJob);
 
     router.get("/logout", authCtrl.getLogout);
+
+    router.get("/logoutAdmin", authCtrl.getLogoutAdmin);
 
     router.get("/search", homeCtrl.getSearchKey);
     

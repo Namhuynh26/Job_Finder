@@ -1,11 +1,11 @@
 const UploadModel = require("../models/uploadModel");
-const {searching} = require("../middlewares/index");
 const Applicant = require("../models/applicantModel");
 
 //Upload CV
 const singleFileUpload = async(req, res, next) => {
     try {
         const file = new UploadModel({
+            applicant: res.locals.applicant,
             fileName: req.file.originalname,
             filePath: req.file.path,
             fileType: req.file.mimetype,
@@ -30,6 +30,19 @@ const fileSizeFormat = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "-" + sizes[index];
 }
 
+//Get uploaded CV
+const getCV = (req, res) => {
+    UploadModel.findOne({}, function(err, CV) {
+        res.render("pages/uploadCV", {CV: CV});
+    }).sort({$natural:1});
+}
+
+//Get profile
+const getProfile = async(req, res) => {
+    applicant = res.locals.applicant;
+    res.render("pages/profile", {applicant: applicant});
+
+}
 
 //Update applicant
 const updateApplicant = async(req, res) => {
@@ -48,5 +61,7 @@ const updateApplicant = async(req, res) => {
 
 module.exports = {
     singleFileUpload,
-    updateApplicant
+    updateApplicant,
+    getCV,
+    getProfile
 };

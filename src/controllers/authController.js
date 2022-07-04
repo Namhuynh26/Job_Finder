@@ -1,5 +1,6 @@
 const ApplicantModel = require("../models/applicantModel");
 const RecruiterModel = require("../models/recruiterModel");
+const AdminModel = require("../models/adminModel");
 const jwt = require("jsonwebtoken");
 
 //Handle error
@@ -100,9 +101,30 @@ const postLogin_Recruiter = async (req, res) => {
     }
 }
 
+const postLogin_Admin = async (req, res) => {
+    let {username, password} = req.body;
+    
+    try {
+        const admin = await AdminModel.loginAdmin(username, password);
+        const token = createToken(admin._id);
+        res.cookie("jwt", token, {httpOnly: true});
+        res.redirect("/admin");
+        res.status(200).json({admin: admin._id});  
+    }
+    catch (err){
+        let errors = handleError(err);
+        res.status(400).json({errors});
+    }
+}
+
 const getLogout = (req, res) => {
     res.cookie("jwt", "");
     res.redirect("/home");
+}
+
+const getLogoutAdmin = (req, res) => {
+    res.cookie("jwt", "");
+    res.redirect("/login_admin");
 }
 
 
@@ -111,5 +133,7 @@ module.exports = {
     postLogin,
     postRegister_Recruiter,
     postLogin_Recruiter,
-    getLogout
+    getLogout,
+    postLogin_Admin,
+    getLogoutAdmin
 };

@@ -30,6 +30,10 @@ const applicantSchema = new mongoose.Schema({
         requiredd: [true, "Số điện thoại không được bỏ trống"],
         unique: true
     },
+    CV: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Upload'
+    },
     createAt: {
         type: Date,
         default: Date.now
