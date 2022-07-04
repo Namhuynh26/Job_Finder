@@ -33,10 +33,13 @@ const getRecruitertAdmin = (req, res) => {
 }
 
 // Approve post
-const postApprove = async(req, res) => {
+const putApprove = async(req, res) => {
     var id = req.params.id;
-    Job.findByIdAndUpdate({_id: id},{$set: {active: !active}}, function(err, job){
-        job.save();
+    Job.findByIdAndUpdate({_id: id}, {$set: {active: !active}}).populate("recruiter").exec((err, job) => {
+        if(err) {
+            return res.json({error: err});
+        }   
+        console.log(id);
     });
 }
 
