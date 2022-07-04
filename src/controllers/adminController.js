@@ -49,5 +49,5 @@ module.exports = {
     getJobAdmin,
     getApplicantAdmin,
     getRecruitertAdmin,
-    postApprove,
+    putApprove,
 };

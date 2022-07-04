@@ -63,7 +63,7 @@ let initRoutes = function(app) {
     });
 
     router.get("/approve", adminCtrl.getJobAdmin);
-    router.put("/approve", adminCtrl.postApprove);
+    router.put("/approve", adminCtrl.putApprove);
     router.get("/applicant", adminCtrl.getApplicantAdmin);
     router.get("/recruiter", adminCtrl.getRecruitertAdmin);
     router.get("/login_admin", function(req, res) {
