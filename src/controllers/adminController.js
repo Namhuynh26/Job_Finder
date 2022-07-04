@@ -35,7 +35,7 @@ const getRecruitertAdmin = (req, res) => {
 // Approve post
 const putApprove = async(req, res) => {
     var id = req.params.id;
-    Job.findByIdAndUpdate({_id: id}, {$set: {active: !active}}).populate("recruiter").exec((err, job) => {
+    Job.findByIdAndUpdate({_id: id}, {$set: {active: true}}).populate("recruiter").exec((err, job) => {
         if(err) {
             return res.json({error: err});
         }   
