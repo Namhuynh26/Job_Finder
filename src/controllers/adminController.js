@@ -32,10 +32,19 @@ const getRecruitertAdmin = (req, res) => {
     });
 }
 
+// Approve post
+const postApprove = async(req, res) => {
+    var id = req.params.id;
+    Job.findByIdAndUpdate({_id: id},{$set: {active: !active}}, function(err, job){
+        job.save();
+    });
+}
+
 
 
 module.exports = {
     getJobAdmin,
     getApplicantAdmin,
-    getRecruitertAdmin
+    getRecruitertAdmin,
+    postApprove,
 };
