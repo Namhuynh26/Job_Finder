@@ -77,7 +77,13 @@ let initRoutes = function(app) {
 
     router.get("/profile", authMid.checkApplicant, applicantCtrl.getProfile);
 
-    router.put("/updateApplicant", applicantCtrl.updateApplicant, authMid.checkApplicant);
+    router.get("/profile_recruiter", authMid.checkRecruiter, recruiterCtrl.getProfile);
+
+    router.get("/updateApplicant/:id", function(req, res) {
+        var id = req.params.id;
+        res.render("pages/updateApplicant", {id:id});
+    });
+    router.put("/updateApplicant/:id", applicantCtrl.updateApplicant, authMid.checkApplicant);
 
     router.get("/postJob", function(req, res) {
         res.render("pages/postJob");

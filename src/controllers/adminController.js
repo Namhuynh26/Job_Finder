@@ -1,6 +1,7 @@
 const Job = require("../models/jobModel");
 const Applicant = require("../models/applicantModel");
 const Recruiter = require("../models/recruiterModel");
+const { reduce } = require("bluebird");
 
 //Job list 
 const getJobAdmin = (req, res) => {
@@ -34,12 +35,16 @@ const getRecruitertAdmin = (req, res) => {
 
 // Approve post
 const putApprove = async(req, res) => {
-    var id = req.params.id;
-    Job.findByIdAndUpdate({_id: id}, {$set: {active: true}}).populate("recruiter").exec((err, job) => {
-        if(err) {
+    var id = req.id;
+    console.log(id);
+    Job.findByIdAndUpdate({_id: id}, {$set: {active : true}}, function(err, job){
+        if(err){
             return res.json({error: err});
-        }   
-        console.log(id);
+        }        
+        job.save(function(err) {
+            if(err) return res.json({error: err});
+            res.redirect("/approve");
+        });
     });
 }
 

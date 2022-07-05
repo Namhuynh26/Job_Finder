@@ -1,4 +1,5 @@
 const JobModel = require("../models/jobModel");
+const Recruiter = require("../models/recruiterModel");
 
 
 const postJob = async (req, res) => {
@@ -26,6 +27,13 @@ const postJob = async (req, res) => {
     
 };
 
+//Get profile
+const getProfile = async(req, res) => {
+    recruiter = res.locals.recruiter;
+    res.render("pages/profileRecruiter", {recruiter: recruiter});
+}
+
 module.exports = {
-    postJob
+    postJob,
+    getProfile
 };

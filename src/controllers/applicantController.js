@@ -44,24 +44,20 @@ const getProfile = async(req, res) => {
 
 }
 
+
 //Update applicant
 const updateApplicant = async(req, res) => {
-    Applicant.findOneAndUpdate({email: req.params.email}, {
-        $set: {
-            username: req.body.username,
-            phone: req.body.phone
-        }
-    }, (err, result) => {
-        if(err) return res.status(500).json({msg: err});
-        return res.json({
-            msg: "Cập nhật thành công"
-        });
+    var id = req.params.id;
+    console.log(id);
+    await Applicant.updateOne({_id: id}, {
+        $set: {username: req.body.username, phone: req.body.phone}
     });
+    res.redirect("/profile");
 };
 
 module.exports = {
     singleFileUpload,
     updateApplicant,
     getCV,
-    getProfile
+    getProfile,
 };

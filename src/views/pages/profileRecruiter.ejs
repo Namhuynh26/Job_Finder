@@ -119,12 +119,15 @@
                 <h4 style="text-align: center;">THÔNG TIN CÁ NHÂN</h4>
             </div>
             <ul>
-                <li>Email : <span><%= applicant.email %>  </span></li>
-                <li>Tên người dùng : <span><%= applicant.username %>  </span></li>
-                <li>Số điện thoại : <span> <%= applicant.phone %> </span></li>
+                <li>Email : <span><%= recruiter.email %>  </span></li>
+                <li>Tên đại diện : <span><%= recruiter.name %>  </span></li>
+                <li>Số điện thoại : <span> <%= recruiter.phone %> </span></li>
+                <li>Công ty : <span> <%= recruiter.nameOfCompany %> </span></li>
+                <li>Địa chỉ : <span> <%= recruiter.address %> </span></li>
+                <li>Tỉnh/thành phố : <span> <%= recruiter.provincecity %> </span></li>
             </ul>
             <div class="apply-btn2">
-                <a href="/updateApplicant/<%= applicant.id %> " class="btn">Cập nhật</a>
+                <a href="" class="btn">Cập nhật</a>
                 <a href="#" class="btn">Đổi mật khẩu</a>
             </div>
         </div>
