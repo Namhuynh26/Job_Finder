@@ -44,15 +44,23 @@ const getProfile = async(req, res) => {
 
 }
 
+//Get applicant update
+const getApplicant = (req, res) => {
+    var id = req.params.id;
+    Applicant.findById({_id: id}, function(err, data) {
+        res.render("pages/updateApplicant", {id:id, username: data?.username, phone: data?.phone});
+    });
+    
+}
 
 //Update applicant
 const updateApplicant = async(req, res) => {
     var id = req.params.id;
-    console.log(id);
     await Applicant.updateOne({_id: id}, {
         $set: {username: req.body.username, phone: req.body.phone}
     });
-    res.redirect("/profile");
+    console.log(req.body);
+    res.redirect("/home");
 };
 
 module.exports = {
@@ -60,4 +68,5 @@ module.exports = {
     updateApplicant,
     getCV,
     getProfile,
+    getApplicant
 };

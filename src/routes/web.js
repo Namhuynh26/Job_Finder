@@ -63,7 +63,7 @@ let initRoutes = function(app) {
     });
 
     router.get("/approve", adminCtrl.getJobAdmin);
-    router.put("/approve", adminCtrl.putApprove);
+    router.post("/approve/:id", adminCtrl.Approve);
     router.get("/applicant", adminCtrl.getApplicantAdmin);
     router.get("/recruiter", adminCtrl.getRecruitertAdmin);
     router.get("/login_admin", function(req, res) {
@@ -79,11 +79,8 @@ let initRoutes = function(app) {
 
     router.get("/profile_recruiter", authMid.checkRecruiter, recruiterCtrl.getProfile);
 
-    router.get("/updateApplicant/:id", function(req, res) {
-        var id = req.params.id;
-        res.render("pages/updateApplicant", {id:id});
-    });
-    router.put("/updateApplicant/:id", applicantCtrl.updateApplicant, authMid.checkApplicant);
+    router.get("/updateApplicant/:id", applicantCtrl.getApplicant);
+    router.post("/updateApplicant/:id", applicantCtrl.updateApplicant, authMid.checkApplicant);
 
     router.get("/postJob", function(req, res) {
         res.render("pages/postJob");

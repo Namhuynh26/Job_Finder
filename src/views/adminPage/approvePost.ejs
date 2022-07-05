@@ -84,7 +84,7 @@
                                             <th>Trạng thái</th>
                                             <th>Loại</th>
                                             <th>Ngày đăng</th>
-                                            <th>Xem/duyệt</th>
+                                            <th>Duyệt</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -94,11 +94,10 @@
                                             <th>Trạng thái</th>
                                             <th>Loại</th>
                                             <th>Ngày đăng</th>
-                                            <th>Xem/duyệt</th>
+                                            <th>Duyệt</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <form method="put" action="/approve">
                                             <% jobList.forEach(job => { %> 
                                                 <tr>
                                                     <td><%= job.title %> </td>
@@ -106,10 +105,12 @@
                                                     <td><%= job.active  %> </td>
                                                     <td><%= job.type %> </td>
                                                     <td><%= job.dateOfPost %> </td>
-                                                    <td><button type="submit" id="approveBtn">Duyệt</button></td>
+                                                    <td><form method="post" action="/approve/<%= job._id %>">
+                                                        <button type="submit" id="approveBtn">Duyệt</button>
+                                                    </form></td>
                                                 </tr>
                                             <% }) %> 
-                                        </form>
+                                        
                                     </tbody>
                                 </table>
                             </div>
