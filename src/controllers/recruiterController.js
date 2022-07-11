@@ -33,7 +33,38 @@ const getProfile = async(req, res) => {
     res.render("pages/profileRecruiter", {recruiter: recruiter});
 }
 
+//Get recruiter update
+const getRecruiter = (req, res) => {
+    var id = req.params.id;
+    Recruiter.findById({_id: id}, function(err, data) {
+        res.render("pages/updateRecruiter", {
+            id:id, 
+            name: data?.name, 
+            phone: data?.phone, 
+            nameOfCompany: data?.nameOfCompany, 
+            address: data?.address
+        });
+    });
+}
+
+//Update applicant
+const updateRecruiter = async(req, res) => {
+    var id = req.params.id;
+    await Recruiter.updateOne({_id: id}, {
+        $set: {
+            name: req.body.name, 
+            phone: req.body.phone, 
+            nameOfCompany: req.body.nameOfCompany,
+            address: req.body.address
+        }
+    });
+    console.log(req.body);
+    res.redirect("/profile_recruiter");
+};
+
 module.exports = {
     postJob,
-    getProfile
+    getProfile,
+    getRecruiter,
+    updateRecruiter
 };

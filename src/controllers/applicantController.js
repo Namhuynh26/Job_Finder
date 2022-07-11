@@ -60,7 +60,7 @@ const updateApplicant = async(req, res) => {
         $set: {username: req.body.username, phone: req.body.phone}
     });
     console.log(req.body);
-    res.redirect("/home");
+    res.redirect("/profile");
 };
 
 module.exports = {

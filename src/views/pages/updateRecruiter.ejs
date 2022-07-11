@@ -120,16 +120,26 @@
                     <div class="card-body p-5">
                       <h2 class="text-uppercase text-center mb-5">CẬP NHẬT THÔNG TIN</h2>
         
-                      <form method="POST" action="/updateApplicant/<%= id %>  " data-remote="true">
+                      <form method="POST" action="/updateRecruiter/<%= id %> " data-remote="true">
 
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example1cg">Tên người dùng*</label>
-                          <input type="text" id="username" class="form-control form-control-lg" placeholder="Nhập tên người dùng của bạn " name="username" value="<%= username %> "/>
+                          <label class="form-label" for="form3Example1cg">Tên người đại diện*</label>
+                          <input type="text" id="username" class="form-control form-control-lg" placeholder="Nhập tên người đại diện " name="name" value="<%= name %> "/>
                         </div>
         
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example1cg">Số điện thoại*</label>
-                          <input type="text" id="phonenumber" class="form-control form-control-lg" placeholder="Nhập số điện thoại của bạn" name="phone" value="<%= phone %> "/>
+                          <input type="text" id="phonenumber" class="form-control form-control-lg" placeholder="Nhập số điện thoại" name="phone" value="<%= phone %> "/>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="form3Example1cg">Công ty*</label>
+                          <input type="text" id="phonenumber" class="form-control form-control-lg" placeholder="Nhập tên công ty" name="nameOfCompany" value="<%= nameOfCompany %> "/>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="form3Example1cg">Địa chỉ*</label>
+                          <input type="text" id="phonenumber" class="form-control form-control-lg" placeholder="Nhập địa chỉ" name="address" value="<%= address %> "/>
                         </div>
 
                         <!--
