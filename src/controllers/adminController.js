@@ -35,7 +35,7 @@ const getRecruitertAdmin = (req, res) => {
 
 // Approve post
 const Approve = async(req, res) => {
-    var id = req.params.id;
+    var id = req.params.o99o9o99o9id;
     console.log(id);
     Job.findByIdAndUpdate({_id: id}, {$set: {active : true}}, function(err, job){
         if(err){

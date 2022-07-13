@@ -49,8 +49,7 @@ const getApplicant = (req, res) => {
     var id = req.params.id;
     Applicant.findById({_id: id}, function(err, data) {
         res.render("pages/updateApplicant", {id:id, username: data?.username, phone: data?.phone});
-    });
-    
+    });  
 }
 
 //Update applicant
@@ -63,10 +62,30 @@ const updateApplicant = async(req, res) => {
     res.redirect("/profile");
 };
 
+//Get update password
+const getPassword = (req, res) => {
+    var id = req.params.id;
+    Applicant.findById({_id: id}, function(err, data) {
+        res.render("pages/updatePasswordApplicant");
+    });  
+}
+
+//Update password
+const updatePassword = async(req, res) => {
+    await Applican.findOne({email: email}, function(err, applicant) {
+        if(err) return handleErr(err);
+        applicant.password = req.body.password;
+        applicant.save(function(err){
+            if(err) return handleErr(err);
+        });
+    });
+}
+
 module.exports = {
     singleFileUpload,
     updateApplicant,
     getCV,
     getProfile,
-    getApplicant
+    getApplicant,
+    getPassword
 };
