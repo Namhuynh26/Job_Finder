@@ -1,5 +1,6 @@
 const UploadModel = require("../models/uploadModel");
 const Applicant = require("../models/applicantModel");
+const bcrypt = require("bcryptjs");
 
 //Upload CV
 const singleFileUpload = async(req, res, next) => {
@@ -55,30 +56,42 @@ const getApplicant = (req, res) => {
 //Update applicant
 const updateApplicant = async(req, res) => {
     var id = req.params.id;
-    await Applicant.updateOne({_id: id}, {
-        $set: {username: req.body.username, phone: req.body.phone}
-    });
-    console.log(req.body);
-    res.redirect("/profile");
+    try {
+        await Applicant.updateOne({_id: id}, {
+            $set: {username: req.body.username, phone: req.body.phone}
+        });
+        console.log(req.body);
+        res.redirect("/profile");
+    } catch (err){
+        console.log("Err", err);
+    }
 };
 
 //Get update password
 const getPassword = (req, res) => {
     var id = req.params.id;
     Applicant.findById({_id: id}, function(err, data) {
-        res.render("pages/updatePasswordApplicant");
+        res.render("pages/updatePasswordApplicant", {id: id});
     });  
 }
 
 //Update password
 const updatePassword = async(req, res) => {
-    await Applican.findOne({email: email}, function(err, applicant) {
-        if(err) return handleErr(err);
-        applicant.password = req.body.password;
-        applicant.save(function(err){
-            if(err) return handleErr(err);
+    var id = req.params.id;
+    try {
+        await Applicant.findOne({_id: id}, function(err, applicant) {
+            const auth = bcrypt.compare(req.body.current_password, applicant.password);
+            if(!auth){
+                return res.send("Mật khẩu hiện tại không đúng");
+            }
+            applicant.password = req.body.new_password;;
+            applicant.save();
+            res.redirect("/profile");
         });
-    });
+    } catch (err) {
+        return res.status(400).send(err.message);
+    }
+    
 }
 
 module.exports = {
@@ -87,5 +100,6 @@ module.exports = {
     getCV,
     getProfile,
     getApplicant,
-    getPassword
+    getPassword,
+    updatePassword
 };

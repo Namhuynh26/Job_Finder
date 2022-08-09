@@ -86,6 +86,7 @@ let initRoutes = function(app) {
     router.post("/updateRecruiter/:id", recruiterCtrl.updateRecruiter, authMid.checkRecruiter);
 
     router.get("/update_password/:id", applicantCtrl.getPassword);
+    router.post("/update_password/:id", applicantCtrl.updatePassword);
 
     router.get("/postJob", function(req, res) {
         res.render("pages/postJob");
